@@ -1,4 +1,5 @@
 from enum import Enum
+from llama_cpp.llama import Llama
 
 from pydantic import BaseModel, constr
 
@@ -30,7 +31,8 @@ class Character(BaseModel):
 
 if __name__ == "__main__":
     # curl -L -o mistral-7b-instruct-v0.2.Q5_K_M.gguf https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF/resolve/main/mistral-7b-instruct-v0.2.Q5_K_M.gguf
-    model = outlines.models.llamacpp("./mistral-7b-instruct-v0.2.Q5_K_M.gguf")
+    model = outlines.models.LlamaCpp(Llama(model_path="./mistral-7b-instruct-v0.2.Q5_K_M.gguf"))
+
 
     # Construct structured sequence generator
     generator = outlines.generate.json(model, Character)
